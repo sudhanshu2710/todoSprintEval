@@ -14,9 +14,10 @@ function App() {
       return [...todos, newTask];
     });
   };
-  const updateStatus = (id_, status_) => {
+  const updateStatus = (id_, status_, start_) => {
     const index = todos.findIndex((e) => e.id === id_);
     todos[index].status = status_;
+    todos[index].time = start_;
     setDone([...done, todos[index]]);
     todos.splice(index, 1);
     setTodos([...todos]);
@@ -69,6 +70,7 @@ function App() {
               <ShowList
                 taskName={task.taskName}
                 taskId={task.id}
+                taskTime={task.time}
                 taskStatus={task.status}
                 updateStatus={updateStatus}
                 removeTaskShow={removeTaskShow}

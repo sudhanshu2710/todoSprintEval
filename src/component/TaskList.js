@@ -5,7 +5,9 @@ export const TaskList = (props) => {
   const [editInput, setEditInput] = useState("");
   const [e, setE] = useState(true);
   const changeStatus = (e) => {
-    props.updateStatus(props.taskId, e.currentTarget.checked);
+    const start = Date.now();
+
+    props.updateStatus(props.taskId, e.currentTarget.checked, start);
   };
   const deleteTask = (e) => {
     props.removeTask(props.taskId);
@@ -34,6 +36,7 @@ export const TaskList = (props) => {
           type="text"
           value={editInput}
           onChange={setNewEditedTask}
+          placeholder={props.taskName}
         ></input>
       )}
       <button className={style.btn} onClick={deleteTask}>
